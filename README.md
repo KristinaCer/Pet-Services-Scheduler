@@ -10,3 +10,5 @@
 5. Find out which employees with the right skills are available on a given date.
 6. Schedule one or more employees to do a set of activities with one or more pets.
 7. Look up currently scheduled events for an employee, a pet, or a customer.
+
+The project was implemented as an Udacity Java Web Developer nanodegree assignment.
