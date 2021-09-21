@@ -19,5 +19,4 @@ public class Customer extends User {
 
     @ElementCollection
     private List<Long> petIds;
-
 }
