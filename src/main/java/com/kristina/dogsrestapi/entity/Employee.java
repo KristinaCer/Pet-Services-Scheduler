@@ -1,4 +1,4 @@
-package com.kristina.dogsrestapi.user;
+package com.kristina.dogsrestapi.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,12 +12,8 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Employee extends User {
-
     private String type="employee";
-
     @ElementCollection
-    //With EnumType.ORDINAL a numeric value will be assigned respectively to each Enum value in the database
-    //With EnumType.STRING a string will be assigned to each Enum value in the database as well
     @Enumerated(EnumType.STRING)
     private Set<EmployeeSkill> skills;
     @ElementCollection

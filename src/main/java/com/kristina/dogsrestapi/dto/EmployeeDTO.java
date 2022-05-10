@@ -1,5 +1,6 @@
-package com.kristina.dogsrestapi.user;
+package com.kristina.dogsrestapi.dto;
 
+import com.kristina.dogsrestapi.entity.EmployeeSkill;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

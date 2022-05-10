@@ -14,4 +14,5 @@ public class CritterController {
     public String test(){
         return "Critter Starter installed successfully";
     }
+
 }

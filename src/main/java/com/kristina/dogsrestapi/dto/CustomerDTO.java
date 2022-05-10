@@ -1,10 +1,10 @@
-package com.kristina.dogsrestapi.user;
+package com.kristina.dogsrestapi.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
+import java.util.Set;
 
 /**
  * Represents the form that customer request and response data takes. Does not map
@@ -18,5 +18,5 @@ public class CustomerDTO {
     private String name;
     private String phoneNumber;
     private String notes;
-    private List<Long> petIds;
+    private Set<Long> petIds;
 }
