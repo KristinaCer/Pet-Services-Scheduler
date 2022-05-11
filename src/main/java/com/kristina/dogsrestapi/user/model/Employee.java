@@ -1,4 +1,4 @@
-package com.kristina.dogsrestapi.entity;
+package com.kristina.dogsrestapi.user.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

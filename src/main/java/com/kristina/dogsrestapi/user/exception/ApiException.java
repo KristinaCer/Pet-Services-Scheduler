@@ -1,4 +1,4 @@
-package com.kristina.dogsrestapi.controller.exception;
+package com.kristina.dogsrestapi.user.exception;
 
 import org.springframework.http.HttpStatus;
 

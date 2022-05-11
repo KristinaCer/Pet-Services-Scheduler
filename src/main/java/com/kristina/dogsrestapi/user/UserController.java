@@ -1,8 +1,7 @@
-package com.kristina.dogsrestapi.controller;
+package com.kristina.dogsrestapi.user;
 
-import com.kristina.dogsrestapi.entity.Employee;
-import com.kristina.dogsrestapi.entity.User;
-import com.kristina.dogsrestapi.service.UserServiceImpl;
+import com.kristina.dogsrestapi.user.model.Employee;
+import com.kristina.dogsrestapi.user.model.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

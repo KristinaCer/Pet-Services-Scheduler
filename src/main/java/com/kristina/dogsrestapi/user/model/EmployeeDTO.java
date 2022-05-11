@@ -1,6 +1,5 @@
-package com.kristina.dogsrestapi.dto;
+package com.kristina.dogsrestapi.user.model;
 
-import com.kristina.dogsrestapi.entity.EmployeeSkill;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,7 +15,6 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 public class EmployeeDTO {
-    private long id;
     private String name;
     private Set<EmployeeSkill> skills;
     private Set<DayOfWeek> daysAvailable;

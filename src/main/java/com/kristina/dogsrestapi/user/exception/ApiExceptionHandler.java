@@ -1,4 +1,4 @@
-package com.kristina.dogsrestapi.controller.exception;
+package com.kristina.dogsrestapi.user.exception;
 
 import com.kristina.dogsrestapi.exception.UserNotFoundException;
 import org.springframework.http.HttpStatus;

@@ -1,4 +1,4 @@
-package com.kristina.dogsrestapi.entity;
+package com.kristina.dogsrestapi.user.model;
 
 /**
  * A example list of employee skills that could be included on an employee or a schedule request.

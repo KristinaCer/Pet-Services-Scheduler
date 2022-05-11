@@ -1,7 +1,7 @@
-package com.kristina.dogsrestapi.service;
+package com.kristina.dogsrestapi.user;
 
-import com.kristina.dogsrestapi.entity.Employee;
-import com.kristina.dogsrestapi.entity.User;
+import com.kristina.dogsrestapi.user.model.Employee;
+import com.kristina.dogsrestapi.user.model.User;
 
 import java.util.Set;
 
