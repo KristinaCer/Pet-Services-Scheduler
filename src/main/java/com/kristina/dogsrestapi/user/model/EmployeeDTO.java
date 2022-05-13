@@ -16,6 +16,7 @@ import java.util.Set;
 @NoArgsConstructor
 public class EmployeeDTO {
     private String name;
+    private String phoneNumber;
     private Set<EmployeeSkill> skills;
     private Set<DayOfWeek> daysAvailable;
 }

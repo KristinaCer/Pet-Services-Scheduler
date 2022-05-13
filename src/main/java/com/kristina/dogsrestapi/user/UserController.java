@@ -1,15 +1,15 @@
 package com.kristina.dogsrestapi.user;
 
 import com.kristina.dogsrestapi.user.model.Employee;
-import com.kristina.dogsrestapi.user.model.User;
-import org.springframework.http.HttpStatus;
+import com.kristina.dogsrestapi.user.model.EmployeeDTO;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Set;
+import java.util.List;
 
 /**
  * Handles web requests related to Users.
@@ -21,26 +21,21 @@ import java.util.Set;
 @RequestMapping("api/users")
 public class UserController {
     private final UserServiceImpl service;
+    private final ModelMapper mapper;
 
-    public UserController(UserServiceImpl service) {
+    public UserController(UserServiceImpl service, ModelMapper mapper) {
         this.service = service;
+        this.mapper = mapper;
     }
 
-    @GetMapping
-    public ResponseEntity<Set<User>> getAllUsers() {
-        Set<User> users = service.getAllUsers();
-        return new ResponseEntity<>(users, HttpStatus.OK);
+    @GetMapping("/employees")
+    public ResponseEntity<List<EmployeeDTO>> getEmployees() {
+        return null;
     }
 
-    @GetMapping("employees/{id}")
+    @GetMapping("/employees/{id}")
     public ResponseEntity<Employee> getEmployeeById(@PathVariable Long id) {
-        Employee emp = service.findEmployeeById(id);
-        return new ResponseEntity<>(emp, HttpStatus.OK);
+        return null;
     }
 
-    @GetMapping("employees")
-    public ResponseEntity<Set<Employee>> getEmployees() {
-        Set<Employee> employees = service.getEmployees();
-        return new ResponseEntity<>(employees, HttpStatus.OK);
-    }
 }
