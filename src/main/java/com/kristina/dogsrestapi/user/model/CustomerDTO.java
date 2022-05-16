@@ -1,5 +1,6 @@
 package com.kristina.dogsrestapi.user.model;
 
+import com.kristina.dogsrestapi.pet.Pet;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,5 +18,5 @@ public class CustomerDTO {
     private String name;
     private String phoneNumber;
     private String notes;
-    private Set<Long> petIds;
+    private Set<Pet> pets;
 }

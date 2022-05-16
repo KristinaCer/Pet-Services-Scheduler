@@ -1,5 +1,6 @@
-package com.kristina.dogsrestapi.user.model;
+package com.kristina.dogsrestapi.employee.model;
 
+import com.kristina.dogsrestapi.user.model.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,7 +13,12 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Employee extends User {
+public class Employee {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    @OneToOne (cascade = CascadeType.ALL)
+    private User user;
     @ElementCollection
     @Enumerated(EnumType.STRING)
     private Set<EmployeeSkill> skills;

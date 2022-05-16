@@ -1,11 +1,7 @@
 package com.kristina.dogsrestapi.user;
 
-import com.kristina.dogsrestapi.user.model.Employee;
-import com.kristina.dogsrestapi.user.model.EmployeeDTO;
-import org.modelmapper.ModelMapper;
-import org.springframework.http.ResponseEntity;
+import com.kristina.dogsrestapi.user.model.User;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,22 +16,14 @@ import java.util.List;
 @RestController
 @RequestMapping("api/users")
 public class UserController {
-    private final UserServiceImpl service;
-    private final ModelMapper mapper;
+    private final UserService userService;
 
-    public UserController(UserServiceImpl service, ModelMapper mapper) {
-        this.service = service;
-        this.mapper = mapper;
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
 
-    @GetMapping("/employees")
-    public ResponseEntity<List<EmployeeDTO>> getEmployees() {
-        return null;
+    @GetMapping
+    public List<User> getUsers() {
+        return userService.getUsers();
     }
-
-    @GetMapping("/employees/{id}")
-    public ResponseEntity<Employee> getEmployeeById(@PathVariable Long id) {
-        return null;
-    }
-
 }

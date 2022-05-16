@@ -1,5 +1,9 @@
 package com.kristina.dogsrestapi.user;
 
-public interface UserService {
+import com.kristina.dogsrestapi.user.model.User;
 
+import java.util.List;
+
+public interface UserService {
+    List<User> getUsers();
 }
