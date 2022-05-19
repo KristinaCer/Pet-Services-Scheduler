@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
 import java.util.Set;
 
 /**
@@ -16,5 +15,5 @@ import java.util.Set;
 @NoArgsConstructor
 public class EmployeeRequestDTO {
     private Set<EmployeeSkill> skills;
-    private LocalDate date;
+   // private LocalDate date;
 }

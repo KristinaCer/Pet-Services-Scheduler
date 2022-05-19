@@ -1,11 +1,14 @@
 package com.kristina.dogsrestapi.employee;
 
 import com.kristina.dogsrestapi.employee.model.Employee;
+import com.kristina.dogsrestapi.employee.model.EmployeeSkill;
 import com.kristina.dogsrestapi.exception.UserNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 @Service
 @Transactional
@@ -18,9 +21,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Long create(Employee employee) {
-        //userRepository.save(employee.getUser()); - same as @OneToOne (cascade = CascadeType.ALL) User user
-        return employeeRepository.save(employee).getId();
+    public Employee save(Employee employee) {
+        //userRepository.save(employee.getUser()); - same as @OneToOne (cascade = CascadeType.ALL) User user or @Transactional
+        return employeeRepository.save(employee);
     }
 
     @Override
@@ -29,18 +32,22 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Long update(Employee employee) {
-        return employeeRepository.save(employee).getId();
+    public Employee findEmployee(Long id) throws UserNotFoundException {
+        return employeeRepository.findById(id).orElseThrow(() -> new UserNotFoundException("User with ID: " + id + " not found."));
     }
 
     @Override
-    public Employee getById(Long id) {
-        //@TODO include Error messages
-        return employeeRepository.findById(id).orElseThrow(UserNotFoundException::new);
+    public Employee findByFirstNameAndLastName(String firstName, String lastName) throws UserNotFoundException {
+        return employeeRepository.findFirstByNameAndLastName(firstName, lastName).orElseThrow(() -> new UserNotFoundException("User Name: " + firstName + " " + lastName));
     }
 
     @Override
-    public Employee getByName(String name) {
+    public Set<Employee> findEmployeesBySkills(Set<EmployeeSkill> skills) throws UserNotFoundException {
+        return employeeRepository.findBySkills(skills).orElseThrow(UserNotFoundException::new);
+    }
+
+    @Override
+    public List<Employee> findBySkillsAndDate(Set<EmployeeSkill> skills, LocalDate date) throws UserNotFoundException {
         return null;
     }
 }

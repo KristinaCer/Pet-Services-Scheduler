@@ -1,17 +1,22 @@
 package com.kristina.dogsrestapi.employee;
 
 import com.kristina.dogsrestapi.employee.model.Employee;
+import com.kristina.dogsrestapi.employee.model.EmployeeSkill;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 public interface EmployeeService {
-    Long create(Employee employee);
+    Employee save(Employee employee);
 
     List<Employee> getAll();
 
-    Long update(Employee employee);
+    Employee findEmployee(Long id);
 
-    Employee getById(Long id);
+    Employee findByFirstNameAndLastName(String name, String lastName);
 
-    Employee getByName(String name);
+    Set<Employee> findEmployeesBySkills(Set<EmployeeSkill> skills);
+
+    List<Employee> findBySkillsAndDate(Set<EmployeeSkill> skills, LocalDate date);
 }

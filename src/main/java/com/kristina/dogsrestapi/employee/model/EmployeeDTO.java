@@ -15,7 +15,8 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 public class EmployeeDTO {
-    private String name;
+    private String firstName;
+    private String lastName;
     private String phoneNumber;
     private Set<EmployeeSkill> skills;
     private Set<DayOfWeek> daysAvailable;

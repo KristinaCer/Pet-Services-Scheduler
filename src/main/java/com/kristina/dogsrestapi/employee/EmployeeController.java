@@ -1,22 +1,21 @@
 package com.kristina.dogsrestapi.employee;
 
-import com.kristina.dogsrestapi.employee.model.Employee;
-import com.kristina.dogsrestapi.employee.model.EmployeeConverter;
-import com.kristina.dogsrestapi.employee.model.EmployeeDTO;
+import com.kristina.dogsrestapi.employee.model.*;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.time.DayOfWeek;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import static com.kristina.dogsrestapi.employee.model.EmployeeConverter.convertToDTO;
-import static com.kristina.dogsrestapi.employee.model.EmployeeConverter.convertToEntity;
 
 @RestController
-@RequestMapping("api/employees")
+@RequestMapping("user/employee")
 public class EmployeeController {
 
     private final EmployeeService employeeService;
@@ -32,33 +31,39 @@ public class EmployeeController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<EmployeeDTO> getById(@PathVariable Long id) {
-        Employee employee = employeeService.getById(id);
+    public ResponseEntity<EmployeeDTO> getEmployee(@PathVariable Long id) {
+        Employee employee = employeeService.findEmployee(id);
         return new ResponseEntity<>(convertToDTO(employee), HttpStatus.OK);
     }
 
-//    @GetMapping("/{name}")
-//    public ResponseEntity<EmployeeDTO> getByName(@PathVariable String name) {
-//        Employee employee = employeeService.getByName(name);
-//        return new ResponseEntity<>(convertToDTO(employee), HttpStatus.OK);
-//    }
+    @GetMapping("/name")
+    public ResponseEntity<EmployeeDTO> getEmployeeByName(@RequestParam String firstName, @RequestParam String lastName) {
+        Employee employee = employeeService.findByFirstNameAndLastName(firstName, lastName);
+        return new ResponseEntity<>(convertToDTO(employee), HttpStatus.OK);
+    }
+
+    @GetMapping("/skills")
+    public ResponseEntity<Set<EmployeeDTO>> findEmployeesBySkills(@RequestBody Set<EmployeeSkill> skills) {
+        Set<Employee> employees = employeeService.findEmployeesBySkills(skills);
+        Set<EmployeeDTO> employeeDTOS = employees.stream().map(employee -> convertToDTO(employee)).collect(Collectors.toSet());
+        return new ResponseEntity<>(employeeDTOS, HttpStatus.OK);
+    }
+
+    @GetMapping("/availability")
+    public ResponseEntity<List<EmployeeDTO>> findEmployeesForService(@RequestBody EmployeeRequestDTO employeeRequestDT0) {
+        //List<EmployeeDTO> employeeDTOS = employeeService.findBySkillsAndDate(employeeRequestDT0.getSkills(), employeeRequestDT0.getDate()).stream().map(employee -> convertToDTO(employee)).collect(Collectors.toList());
+        return new ResponseEntity<>(null, HttpStatus.OK);
+    }
 
     @PostMapping
-    public ResponseEntity<Long> create(@Valid @RequestBody EmployeeDTO body) {
-        return new ResponseEntity<>(employeeService.create(EmployeeConverter.convertToEntity(body)), HttpStatus.OK);
+    public ResponseEntity<Employee> create(@Valid @RequestBody EmployeeDTO body) {
+        return new ResponseEntity<>(employeeService.save(EmployeeConverter.convertToEntity(body)), HttpStatus.OK);
     }
 
-    @PutMapping
-    public ResponseEntity<Long> update(@Valid @RequestBody EmployeeDTO body) {
-        Employee employee = convertToEntity(body);
-        return new ResponseEntity<>(employeeService.update(employee), HttpStatus.OK);
-    }
-
-    public void changeEmployeeAvailability(){
-
-    }
-
-    public List<Employee> findEmployeesByServiceAndTime(){
-        return null;
+    @PutMapping("/{employeeId}")
+    public ResponseEntity<Employee> update(@RequestBody Set<DayOfWeek> daysAvailable, @PathVariable long employeeId) {
+        Employee e = employeeService.findEmployee(employeeId);
+        e.setDaysAvailable(daysAvailable);
+        return new ResponseEntity<>(employeeService.save(e), HttpStatus.OK);
     }
 }

@@ -9,7 +9,8 @@ public final class EmployeeConverter {
         Employee employee = new Employee();
         User user = new User();
         user.setUserRole(UserRole.EMPLOYEE);
-        user.setName(employeeDTO.getName());
+        user.setFirstName(employeeDTO.getFirstName());
+        user.setLastName(employeeDTO.getLastName());
         user.setPhoneNumber(employeeDTO.getPhoneNumber());
         employee.setDaysAvailable(employeeDTO.getDaysAvailable());
         employee.setSkills(employeeDTO.getSkills());
@@ -19,7 +20,8 @@ public final class EmployeeConverter {
 
     public static EmployeeDTO convertToDTO(Employee employee){
         EmployeeDTO employeeDTO = new EmployeeDTO();
-        employeeDTO.setName(employee.getUser().getName());
+        employeeDTO.setFirstName(employee.getUser().getFirstName());
+        employeeDTO.setLastName(employee.getUser().getLastName());
         employeeDTO.setPhoneNumber(employee.getUser().getPhoneNumber());
         employeeDTO.setSkills(employee.getSkills());
         employeeDTO.setDaysAvailable(employee.getDaysAvailable());

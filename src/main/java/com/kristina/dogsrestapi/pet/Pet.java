@@ -7,6 +7,7 @@ import org.hibernate.annotations.Nationalized;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+
 @Entity
 @Data
 @AllArgsConstructor
