@@ -18,5 +18,5 @@ public interface EmployeeService {
 
     Set<Employee> findEmployeesBySkills(Set<EmployeeSkill> skills);
 
-    List<Employee> findBySkillsAndDate(Set<EmployeeSkill> skills, LocalDate date);
+    Set<Employee> findBySkillsAndDate(Set<EmployeeSkill> skills, LocalDate date);
 }

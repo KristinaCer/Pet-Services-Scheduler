@@ -32,22 +32,24 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Employee findEmployee(Long id) throws UserNotFoundException {
+    public Employee findEmployee(Long id) {
         return employeeRepository.findById(id).orElseThrow(() -> new UserNotFoundException("User with ID: " + id + " not found."));
     }
 
     @Override
-    public Employee findByFirstNameAndLastName(String firstName, String lastName) throws UserNotFoundException {
+    public Employee findByFirstNameAndLastName(String firstName, String lastName) {
         return employeeRepository.findFirstByNameAndLastName(firstName, lastName).orElseThrow(() -> new UserNotFoundException("User Name: " + firstName + " " + lastName));
     }
 
+
     @Override
     public Set<Employee> findEmployeesBySkills(Set<EmployeeSkill> skills) throws UserNotFoundException {
-        return employeeRepository.findBySkills(skills).orElseThrow(UserNotFoundException::new);
+        return employeeRepository.findBySkills(skills, skills.size()).orElseThrow(UserNotFoundException::new);
     }
 
     @Override
-    public List<Employee> findBySkillsAndDate(Set<EmployeeSkill> skills, LocalDate date) throws UserNotFoundException {
-        return null;
+    public Set<Employee> findBySkillsAndDate(Set<EmployeeSkill> skills, LocalDate date) throws UserNotFoundException {
+        return employeeRepository.findBySkillsInAndDaysAvailableContains(skills, date.getDayOfWeek())
+                .orElseThrow(UserNotFoundException::new);
     }
 }

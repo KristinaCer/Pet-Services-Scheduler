@@ -1,4 +1,4 @@
-package com.kristina.dogsrestapi.user.model;
+package com.kristina.dogsrestapi.customer;
 
 import com.kristina.dogsrestapi.pet.Pet;
 import lombok.AllArgsConstructor;

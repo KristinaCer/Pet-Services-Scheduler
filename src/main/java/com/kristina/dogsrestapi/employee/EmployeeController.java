@@ -50,9 +50,9 @@ public class EmployeeController {
     }
 
     @GetMapping("/availability")
-    public ResponseEntity<List<EmployeeDTO>> findEmployeesForService(@RequestBody EmployeeRequestDTO employeeRequestDT0) {
-        //List<EmployeeDTO> employeeDTOS = employeeService.findBySkillsAndDate(employeeRequestDT0.getSkills(), employeeRequestDT0.getDate()).stream().map(employee -> convertToDTO(employee)).collect(Collectors.toList());
-        return new ResponseEntity<>(null, HttpStatus.OK);
+    public ResponseEntity<Set<EmployeeDTO>> findEmployeesForService(@RequestBody EmployeeRequestDTO employeeRequestDT0) {
+        Set<EmployeeDTO> employeeDTOS = employeeService.findBySkillsAndDate(employeeRequestDT0.getSkills(), employeeRequestDT0.getDate()).stream().map(employee -> convertToDTO(employee)).collect(Collectors.toSet());
+        return new ResponseEntity<>(employeeDTOS, HttpStatus.OK);
     }
 
     @PostMapping

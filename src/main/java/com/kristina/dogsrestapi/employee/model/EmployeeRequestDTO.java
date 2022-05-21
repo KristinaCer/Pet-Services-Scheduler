@@ -1,9 +1,11 @@
 package com.kristina.dogsrestapi.employee.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.Set;
 
 /**
@@ -15,5 +17,6 @@ import java.util.Set;
 @NoArgsConstructor
 public class EmployeeRequestDTO {
     private Set<EmployeeSkill> skills;
-   // private LocalDate date;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    private LocalDate date;
 }
