@@ -5,7 +5,7 @@ import com.kristina.dogsrestapi.user.model.UserRole;
 
 public final class CustomerConverter {
 
-    public static CustomerDTO convertToCustomerDTO(Customer customer) {
+    public static CustomerDTO convertToDTO(Customer customer) {
         CustomerDTO customerDTO = new CustomerDTO();
         customerDTO.setFirstName(customer.getUser().getFirstName());
         customerDTO.setLastName(customer.getUser().getLastName());

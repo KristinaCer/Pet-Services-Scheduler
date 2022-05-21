@@ -24,6 +24,6 @@ public class CustomerController{
     @PostMapping
     public ResponseEntity<CustomerDTO> saveCustomer(@Valid @RequestBody CustomerDTO customerDTO) {
         Customer customer = customerService.save(CustomerConverter.convertToEntity(customerDTO));
-        return new ResponseEntity<>(CustomerConverter.convertToCustomerDTO(customer), HttpStatus.OK);
+        return new ResponseEntity<>(CustomerConverter.convertToDTO(customer), HttpStatus.OK);
     }
 }
