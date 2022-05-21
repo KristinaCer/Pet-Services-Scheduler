@@ -1,4 +1,4 @@
-package com.kristina.dogsrestapi.customer;
+package com.kristina.dogsrestapi.customer.model;
 
 import com.kristina.dogsrestapi.pet.Pet;
 import lombok.AllArgsConstructor;
@@ -15,7 +15,8 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CustomerDTO {
-    private String name;
+    private String firstName;
+    private String lastName;
     private String phoneNumber;
     private String notes;
     private Set<Pet> pets;

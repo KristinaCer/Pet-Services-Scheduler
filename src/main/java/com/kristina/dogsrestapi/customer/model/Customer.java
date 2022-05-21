@@ -1,4 +1,4 @@
-package com.kristina.dogsrestapi.customer;
+package com.kristina.dogsrestapi.customer.model;
 
 import com.kristina.dogsrestapi.pet.Pet;
 import com.kristina.dogsrestapi.user.model.User;
@@ -17,9 +17,9 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private User user;
     private String notes;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private Set<Pet> pets;
 }

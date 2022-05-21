@@ -56,14 +56,15 @@ public class EmployeeController {
     }
 
     @PostMapping
-    public ResponseEntity<Employee> create(@Valid @RequestBody EmployeeDTO body) {
-        return new ResponseEntity<>(employeeService.save(EmployeeConverter.convertToEntity(body)), HttpStatus.OK);
+    public ResponseEntity<EmployeeDTO> create(@Valid @RequestBody EmployeeDTO body) {
+        Employee emp = employeeService.save(EmployeeConverter.convertToEntity(body));
+        return new ResponseEntity<>(EmployeeConverter.convertToDTO(emp), HttpStatus.OK);
     }
 
     @PutMapping("/{employeeId}")
-    public ResponseEntity<Employee> update(@RequestBody Set<DayOfWeek> daysAvailable, @PathVariable long employeeId) {
+    public ResponseEntity<EmployeeDTO> update(@RequestBody Set<DayOfWeek> daysAvailable, @PathVariable long employeeId) {
         Employee e = employeeService.findEmployee(employeeId);
         e.setDaysAvailable(daysAvailable);
-        return new ResponseEntity<>(employeeService.save(e), HttpStatus.OK);
+        return new ResponseEntity<>(EmployeeConverter.convertToDTO(employeeService.save(e)), HttpStatus.OK);
     }
 }

@@ -1,14 +1,14 @@
-//package com.kristina.dogsrestapi.controller;
-//
-//import com.kristina.dogsrestapi.dto.PetDTO;
-//import org.springframework.web.bind.annotation.*;
-//
-//import java.util.List;
-//
-//
-///**
-// * Handles web requests related to Pets.
-// */
-//public class PetController {
-//
-//}
+package com.kristina.dogsrestapi.pet;
+
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+/**
+ * Handles web requests related to Pets.
+ */
+@RestController
+@RequestMapping("/pet")
+public class PetController {
+
+}

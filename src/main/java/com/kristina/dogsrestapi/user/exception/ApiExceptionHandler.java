@@ -13,11 +13,12 @@ import java.time.ZonedDateTime;
 public class ApiExceptionHandler {
     //handle a custom API exception
     @ExceptionHandler(value = {UserNotFoundException.class})
-    public ResponseEntity<Object> handleApiRequestException(UserNotFoundException e){
+    public ResponseEntity<Object> handleApiRequestException(UserNotFoundException e) {
         //1.create a payload containing exception details that we will send in the response entity
         HttpStatus notFound = HttpStatus.NOT_FOUND;
         ApiException apiException = new ApiException(
                 e.getMessage(),
+                e,
                 notFound,
                 ZonedDateTime.now(ZoneId.of("Z")));
         //2.Return response entity
