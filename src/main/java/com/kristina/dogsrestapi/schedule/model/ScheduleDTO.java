@@ -1,4 +1,4 @@
-package com.kristina.dogsrestapi.schedule;
+package com.kristina.dogsrestapi.schedule.model;
 
 import com.kristina.dogsrestapi.employee.model.EmployeeSkill;
 import lombok.AllArgsConstructor;
@@ -8,10 +8,6 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDate;
 import java.util.Set;
 
-/**
- * Represents the form that schedule request and response data takes. Does not map
- * to the database directly.
- */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

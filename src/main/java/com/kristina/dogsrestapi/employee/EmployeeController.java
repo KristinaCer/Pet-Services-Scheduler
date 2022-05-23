@@ -37,7 +37,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/name")
-    public ResponseEntity<EmployeeDTO> getEmployeeByName(@RequestParam String firstName, @RequestParam String lastName) {
+    public ResponseEntity<EmployeeDTO> findEmployeeByName(@RequestParam String firstName, @RequestParam String lastName) {
         Employee employee = employeeService.findByFirstNameAndLastName(firstName, lastName);
         return new ResponseEntity<>(convertToDTO(employee), HttpStatus.OK);
     }
@@ -56,11 +56,12 @@ public class EmployeeController {
     }
 
     @PostMapping
-    public ResponseEntity<EmployeeDTO> create(@Valid @RequestBody EmployeeDTO body) {
+    public ResponseEntity<EmployeeDTO> save(@Valid @RequestBody EmployeeDTO body) {
         Employee emp = employeeService.save(EmployeeConverter.convertToEntity(body));
         return new ResponseEntity<>(EmployeeConverter.convertToDTO(emp), HttpStatus.OK);
     }
 
+    //@TODO Can you prevent requests from creating invalid schedules?
     @PutMapping("/{employeeId}")
     public ResponseEntity<EmployeeDTO> updateEmployeeSchedule(@Valid @RequestBody Set<DayOfWeek> daysAvailable, @PathVariable long employeeId) {
         Employee e = employeeService.findEmployee(employeeId);
