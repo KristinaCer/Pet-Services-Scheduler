@@ -18,7 +18,7 @@ public class ApiExceptionHandler {
         HttpStatus notFound = HttpStatus.NOT_FOUND;
         ApiException apiException = new ApiException(
                 e.getMessage(),
-                e,
+               // e,
                 notFound,
                 ZonedDateTime.now(ZoneId.of("Z")));
         //2.Return response entity

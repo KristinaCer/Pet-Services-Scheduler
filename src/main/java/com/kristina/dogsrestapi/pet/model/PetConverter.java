@@ -2,7 +2,7 @@ package com.kristina.dogsrestapi.pet.model;
 
 public final class PetConverter {
 
-    public Pet convertToEntity(PetDTO petDTO){
+    public static Pet convertToEntity(PetDTO petDTO){
         Pet pet = new Pet();
         pet.setName(petDTO.getName());
         pet.setBirthDate(petDTO.getBirthDate());
@@ -12,7 +12,7 @@ public final class PetConverter {
         return pet;
     }
 
-    public PetDTO convertToDto(Pet pet){
+    public static PetDTO convertToDto(Pet pet){
         PetDTO petDTO = new PetDTO();
         petDTO.setId(pet.getId());
         petDTO.setType(pet.getType());
