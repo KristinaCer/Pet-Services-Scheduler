@@ -62,7 +62,7 @@ public class EmployeeController {
     }
 
     @PutMapping("/{employeeId}")
-    public ResponseEntity<EmployeeDTO> update(@RequestBody Set<DayOfWeek> daysAvailable, @PathVariable long employeeId) {
+    public ResponseEntity<EmployeeDTO> updateEmployeeSchedule(@Valid @RequestBody Set<DayOfWeek> daysAvailable, @PathVariable long employeeId) {
         Employee e = employeeService.findEmployee(employeeId);
         e.setDaysAvailable(daysAvailable);
         return new ResponseEntity<>(EmployeeConverter.convertToDTO(employeeService.save(e)), HttpStatus.OK);

@@ -5,6 +5,8 @@ import com.kristina.dogsrestapi.exception.UserNotFoundException;
 import com.kristina.dogsrestapi.pet.model.Pet;
 import org.springframework.stereotype.Service;
 
+import java.util.Set;
+
 @Service
 public class PetServiceImpl implements PetService {
     private final PetRepository petRepository;
@@ -20,5 +22,10 @@ public class PetServiceImpl implements PetService {
         long ownerId = pet.getOwnerId();
         customerRepository.findById(ownerId).orElseThrow(() -> new UserNotFoundException(String.format("Pet owner with ID %d was not found.", ownerId)));
         return petRepository.save(pet);
+    }
+
+    @Override
+    public Set<Pet> getAllByOwnerId(Long id) {
+        return petRepository.getPetsByOwner(id);
     }
 }

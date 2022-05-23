@@ -1,16 +1,12 @@
 package com.kristina.dogsrestapi.pet;
 
 import com.kristina.dogsrestapi.pet.model.Pet;
-import com.kristina.dogsrestapi.pet.model.PetConverter;
-import com.kristina.dogsrestapi.pet.model.PetDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Set;
 
 /**
  * Handles web requests related to Pets.
@@ -26,8 +22,14 @@ public class PetController {
     }
 
     @PostMapping
-    public ResponseEntity<PetDTO> savePet(@Valid @RequestBody PetDTO petDTO) {
-        Pet pet = petService.save(PetConverter.convertToEntity(petDTO));
-        return new ResponseEntity<>(PetConverter.convertToDto(pet), HttpStatus.OK);
+    public ResponseEntity<Pet> savePet(@Valid @RequestBody Pet petDTO) {
+        Pet pet = petService.save(petDTO);
+        return new ResponseEntity<>(pet, HttpStatus.OK);
+    }
+
+    @GetMapping("/owner/{id}")
+    public ResponseEntity<Set<Pet>> findAllByOwner(@PathVariable Long id) {
+        Set<Pet> petDTOS = petService.getAllByOwnerId(id);
+        return new ResponseEntity<>(petDTOS, HttpStatus.OK);
     }
 }
