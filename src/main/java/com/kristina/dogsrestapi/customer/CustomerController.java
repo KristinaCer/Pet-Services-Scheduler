@@ -25,13 +25,14 @@ public class CustomerController {
         Customer customer = customerService.save(CustomerConverter.convertToEntity(customerDTO));
         return new ResponseEntity<>(CustomerConverter.convertToDTO(customer), HttpStatus.OK);
     }
+
     @GetMapping
-    public List<CustomerDTO> getAllCustomers(){
+    public List<CustomerDTO> getAllCustomers() {
         throw new UnsupportedOperationException();
     }
 
     @GetMapping("/pet/{petId}")
-    public CustomerDTO getOwnerByPet(@PathVariable long petId){
+    public CustomerDTO getOwnerByPet(@PathVariable long petId) {
         throw new UnsupportedOperationException();
     }
 }

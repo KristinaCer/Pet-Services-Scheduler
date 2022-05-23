@@ -11,9 +11,24 @@ import java.util.Set;
 @RestController
 @RequestMapping("/schedule")
 public class ScheduleController {
+
+
+    private final ScheduleService scheduleService;
+
+    public ScheduleController(ScheduleService scheduleService) {
+        this.scheduleService = scheduleService;
+    }
+
+
     @PostMapping
     public ScheduleDTO createSchedule(@RequestBody ScheduleDTO scheduleDTO) {
-        throw new UnsupportedOperationException();
+        Set<Long> employeeIds = scheduleDTO.getEmployeeIds();
+
+        Set<Long> petIds = scheduleDTO.getPetIds();
+
+        scheduleService.save(scheduleDTO.getDate(), employeeIds, petIds, scheduleDTO.getActivities());
+
+        return null;
     }
 
     @GetMapping

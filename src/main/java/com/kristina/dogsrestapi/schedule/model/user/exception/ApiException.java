@@ -1,4 +1,4 @@
-package com.kristina.dogsrestapi.user.exception;
+package com.kristina.dogsrestapi.schedule.model.user.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

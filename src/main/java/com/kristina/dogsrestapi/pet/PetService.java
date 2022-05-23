@@ -8,4 +8,6 @@ public interface PetService {
     Pet save(Pet convertToEntity);
 
     Set<Pet> getAllByOwnerId(Long id);
+
+    Pet getPet(Long id);
 }

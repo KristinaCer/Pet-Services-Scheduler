@@ -1,6 +1,6 @@
 package com.kristina.dogsrestapi.employee.model;
 
-import com.kristina.dogsrestapi.user.model.User;
+import com.kristina.dogsrestapi.schedule.model.user.model.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

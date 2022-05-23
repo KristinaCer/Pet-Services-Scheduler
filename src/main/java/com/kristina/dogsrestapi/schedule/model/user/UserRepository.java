@@ -1,6 +1,6 @@
-package com.kristina.dogsrestapi.user;
+package com.kristina.dogsrestapi.schedule.model.user;
 
-import com.kristina.dogsrestapi.user.model.User;
+import com.kristina.dogsrestapi.schedule.model.user.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
