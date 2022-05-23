@@ -68,5 +68,5 @@ public class EmployeeController {
         e.setDaysAvailable(daysAvailable);
         return new ResponseEntity<>(EmployeeConverter.convertToDTO(employeeService.save(e)), HttpStatus.OK);
     }
-    //@Todo Find employee count and average salary by particular skill
+    //@Todo Find employee count and average salary by a particular skill
 }

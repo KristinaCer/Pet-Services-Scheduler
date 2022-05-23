@@ -17,7 +17,6 @@ public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private double salary;
     @OneToOne(cascade = CascadeType.ALL)
     private User user;
     @ElementCollection
