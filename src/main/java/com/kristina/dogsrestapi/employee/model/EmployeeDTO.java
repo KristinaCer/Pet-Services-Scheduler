@@ -18,6 +18,7 @@ public class EmployeeDTO {
     private String firstName;
     private String lastName;
     private String phoneNumber;
+    private double salary;
     private Set<EmployeeSkill> skills;
     private Set<DayOfWeek> daysAvailable;
 }

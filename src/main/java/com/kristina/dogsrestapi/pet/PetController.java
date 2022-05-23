@@ -32,4 +32,5 @@ public class PetController {
         Set<Pet> petDTOS = petService.getAllByOwnerId(id);
         return new ResponseEntity<>(petDTOS, HttpStatus.OK);
     }
+    //@TODO find all pets by name and birth date interval
 }
