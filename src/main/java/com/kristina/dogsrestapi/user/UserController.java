@@ -1,6 +1,6 @@
-package com.kristina.dogsrestapi.schedule.model.user;
+package com.kristina.dogsrestapi.user;
 
-import com.kristina.dogsrestapi.schedule.model.user.model.User;
+import com.kristina.dogsrestapi.user.model.User;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

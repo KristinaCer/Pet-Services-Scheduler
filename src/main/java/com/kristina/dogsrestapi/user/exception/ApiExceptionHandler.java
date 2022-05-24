@@ -1,4 +1,4 @@
-package com.kristina.dogsrestapi.schedule.model.user.exception;
+package com.kristina.dogsrestapi.user.exception;
 
 import com.kristina.dogsrestapi.exception.PetNotFoundException;
 import com.kristina.dogsrestapi.exception.UserNotFoundException;

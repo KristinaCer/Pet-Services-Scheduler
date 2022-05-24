@@ -23,15 +23,15 @@ public class PetController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Pet> getPet(@PathVariable Long id) {
-        Pet pet = petService.getPet(id);
+        Pet pet = petService.findPet(id);
         return new ResponseEntity<>(pet, HttpStatus.OK);
-
     }
 
     @PostMapping
-    public ResponseEntity<Pet> savePet(@Valid @RequestBody Pet petDTO) {
-        Pet pet = petService.save(petDTO);
-        return new ResponseEntity<>(pet, HttpStatus.OK);
+    public ResponseEntity<Pet> savePet(@Valid @RequestBody Pet body) {
+        //Converteri issitraukti Customer is db ir pasetinti.
+        // Pet pet = petService.save(pet);
+        return new ResponseEntity<>(body, HttpStatus.OK);
     }
 
     @GetMapping("/owner/{id}")

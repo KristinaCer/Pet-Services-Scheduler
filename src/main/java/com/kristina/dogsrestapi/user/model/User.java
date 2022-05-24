@@ -1,4 +1,4 @@
-package com.kristina.dogsrestapi.schedule.model.user.model;
+package com.kristina.dogsrestapi.user.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

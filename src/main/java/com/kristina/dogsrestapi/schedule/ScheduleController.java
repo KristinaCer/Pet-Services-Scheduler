@@ -1,6 +1,9 @@
 package com.kristina.dogsrestapi.schedule;
 
+import com.kristina.dogsrestapi.schedule.model.Schedule;
 import com.kristina.dogsrestapi.schedule.model.ScheduleDTO;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Set;
@@ -12,23 +15,15 @@ import java.util.Set;
 @RequestMapping("/schedule")
 public class ScheduleController {
 
-
     private final ScheduleService scheduleService;
 
     public ScheduleController(ScheduleService scheduleService) {
         this.scheduleService = scheduleService;
     }
 
-
     @PostMapping
-    public ScheduleDTO createSchedule(@RequestBody ScheduleDTO scheduleDTO) {
-        Set<Long> employeeIds = scheduleDTO.getEmployeeIds();
-
-        Set<Long> petIds = scheduleDTO.getPetIds();
-
-        scheduleService.save(scheduleDTO.getDate(), employeeIds, petIds, scheduleDTO.getActivities());
-
-        return null;
+    public ResponseEntity<Long> createSchedule(@RequestBody ScheduleDTO scheduleDTO) {
+        return new ResponseEntity<>(scheduleService.save(scheduleDTO).getId(), HttpStatus.CREATED);
     }
 
     @GetMapping

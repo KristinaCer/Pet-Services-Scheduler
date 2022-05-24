@@ -1,6 +1,7 @@
 package com.kristina.dogsrestapi.pet.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.kristina.dogsrestapi.customer.model.Customer;
 import com.kristina.dogsrestapi.pet.PetType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,7 +24,8 @@ public class Pet {
     private PetType type;
     @Nationalized
     private String name;
-    private long ownerId;
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Customer owner;
     private LocalDate birthDate;
     private String notes;
 }

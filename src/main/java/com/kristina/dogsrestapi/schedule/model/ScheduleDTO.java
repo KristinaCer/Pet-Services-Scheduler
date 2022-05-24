@@ -7,16 +7,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-import java.util.Set;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class ScheduleDTO {
-    private long id;
-    private Set<Long> employeeIds;
-    private Set<Long> petIds;
+    private Long employeeId;
+    private Long petId;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate date;
-    private Set<EmployeeSkill> activities;
+    private EmployeeSkill activity;
 }

@@ -1,6 +1,6 @@
 package com.kristina.dogsrestapi.employee.model;
 
-import com.kristina.dogsrestapi.schedule.model.user.model.User;
+import com.kristina.dogsrestapi.user.model.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,4 +25,7 @@ public class Employee {
     @ElementCollection
     @Enumerated(EnumType.STRING)
     private Set<DayOfWeek> daysAvailable;
+    //grupuoti pagal skila, avg pagal ta skilla
+    //https://www.w3schools.com/sql/sql_count_avg_sum.asp
+    private Long salary;
 }

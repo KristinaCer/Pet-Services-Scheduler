@@ -1,7 +1,7 @@
 package com.kristina.dogsrestapi.customer.model;
 
-import com.kristina.dogsrestapi.schedule.model.user.model.User;
-import com.kristina.dogsrestapi.schedule.model.user.model.UserRole;
+import com.kristina.dogsrestapi.user.model.User;
+import com.kristina.dogsrestapi.user.model.UserRole;
 
 public final class CustomerConverter {
 

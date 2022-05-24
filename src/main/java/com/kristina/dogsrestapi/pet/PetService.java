@@ -9,5 +9,5 @@ public interface PetService {
 
     Set<Pet> getAllByOwnerId(Long id);
 
-    Pet getPet(Long id);
+    Pet findPet(Long id);
 }
