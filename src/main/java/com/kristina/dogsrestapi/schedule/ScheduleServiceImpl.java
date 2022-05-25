@@ -2,11 +2,16 @@ package com.kristina.dogsrestapi.schedule;
 
 import com.kristina.dogsrestapi.employee.EmployeeService;
 import com.kristina.dogsrestapi.employee.model.Employee;
+import com.kristina.dogsrestapi.employee.model.EmployeeSkill;
 import com.kristina.dogsrestapi.pet.PetService;
 import com.kristina.dogsrestapi.pet.model.Pet;
 import com.kristina.dogsrestapi.schedule.model.Schedule;
-import com.kristina.dogsrestapi.schedule.model.ScheduleDTO;
+import com.kristina.dogsrestapi.schedule.model.ScheduleRequestDTO;
 import org.springframework.stereotype.Service;
+
+import java.time.DayOfWeek;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ScheduleServiceImpl implements ScheduleService {
@@ -21,15 +26,29 @@ public class ScheduleServiceImpl implements ScheduleService {
     }
 
     @Override
-    public Schedule save(ScheduleDTO scheduleDTO) {
-        //vietoj ID passinti date.getweekday ir activity
-        Employee employee = findAndCheckEmployee(scheduleDTO);
+    public Schedule save(ScheduleRequestDTO scheduleDTO) {
+        Employee employee = findEmployeesAndCheckTheirAvailability(scheduleDTO);
         Long petId = scheduleDTO.getPetId();
         Pet pet = petService.findPet(petId);
         return createAndSaveSchedule(scheduleDTO, employee, pet);
     }
 
-    private Schedule createAndSaveSchedule(ScheduleDTO dto, Employee employee, Pet pet) {
+    @Override
+    public List<Schedule> getAllSchedules() {
+        return scheduleRepository.findAll();
+    }
+
+    @Override
+    public Schedule getScheduleForPet(long petId) {
+        return scheduleRepository.getByPetId(petId);
+    }
+
+    @Override
+    public Schedule getScheduleForEmployee(long employeeId) {
+        return scheduleRepository.getByEmployeeId(employeeId);
+    }
+
+    private Schedule createAndSaveSchedule(ScheduleRequestDTO dto, Employee employee, Pet pet) {
         Schedule schedule = new Schedule();
         schedule.setDate(dto.getDate());
         schedule.setEmployee(employee);
@@ -38,23 +57,27 @@ public class ScheduleServiceImpl implements ScheduleService {
         return scheduleRepository.save(schedule);
     }
 
-    private Employee findAndCheckEmployee(ScheduleDTO scheduleDTO) {
-        Long employeeId = scheduleDTO.getEmployeeId();
-        Employee employee = employeeService.findEmployee(employeeId);
-        checkEmployeeSkills(scheduleDTO, employee);
-        checkEmployeeAvailability(scheduleDTO, employee);
+    private Employee findEmployeesAndCheckTheirAvailability(ScheduleRequestDTO scheduleDTO) {
+        List<Employee> employees = employeeService.getAll();
+        Employee employee = checkEmployeeAvailabilityAndSkills(scheduleDTO, employees).orElseThrow(() -> new RuntimeException("No available employees found"));
         return employee;
     }
 
-    private void checkEmployeeAvailability(ScheduleDTO scheduleDTO, Employee employee) {
-        if (!employee.getDaysAvailable().contains(scheduleDTO.getDate().getDayOfWeek())) {
-            throw new RuntimeException("Employee is not available");
-        }
+    private Optional<Employee> checkEmployeeAvailabilityAndSkills(ScheduleRequestDTO scheduleDTO, List<Employee> employees) {
+        DayOfWeek dayOfWeek = scheduleDTO.getDate().getDayOfWeek();
+        return employees.stream().filter(employee -> checkEmployeeAvailability(employee, dayOfWeek))
+                .filter(employee -> checkEmployeeSkills(employee, scheduleDTO.getActivity())).findFirst();
     }
 
-    private void checkEmployeeSkills(ScheduleDTO scheduleDTO, Employee employee) {
-        if (!employee.getSkills().contains(scheduleDTO.getActivity())) {
+    private Boolean checkEmployeeAvailability(Employee employee, DayOfWeek dayOfWeek) {
+        if (!employee.getDaysAvailable().contains(dayOfWeek)) {
+            throw new RuntimeException("Employee is not available");
+        } else return true;
+    }
+
+    private Boolean checkEmployeeSkills(Employee employee, EmployeeSkill skill) {
+        if (!employee.getSkills().contains(skill)) {
             throw new RuntimeException("Employee does not have required skills");
-        }
+        } else return true;
     }
 }

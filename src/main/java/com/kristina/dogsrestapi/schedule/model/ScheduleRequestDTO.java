@@ -11,10 +11,10 @@ import java.time.LocalDate;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ScheduleDTO {
-    private Long employeeId;
+public class ScheduleRequestDTO {
     private Long petId;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate date;
     private EmployeeSkill activity;
+
 }

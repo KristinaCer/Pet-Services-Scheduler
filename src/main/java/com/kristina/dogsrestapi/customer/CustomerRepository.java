@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
+//    @Query("select customer_id from  Customer_pets where pets_id = p")
+//     void findOwnerByPetId(Pet pet, long petId);
 }

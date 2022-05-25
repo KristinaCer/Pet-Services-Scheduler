@@ -9,12 +9,14 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("user/customer")
 public class CustomerController {
 
     private final CustomerService customerService;
+
     public CustomerController(CustomerService customerService) {
         this.customerService = customerService;
     }
@@ -27,11 +29,14 @@ public class CustomerController {
 
     @GetMapping
     public List<CustomerDTO> getAllCustomers() {
-        throw new UnsupportedOperationException();
+        List<Customer> customers = customerService.getAll();
+        List<CustomerDTO> customerDTOS = customers.stream().map(customer -> CustomerConverter.convertToDTO(customer)).collect(Collectors.toList());
+        return customerDTOS;
     }
 
     @GetMapping("/pet/{petId}")
     public CustomerDTO getOwnerByPet(@PathVariable long petId) {
-        throw new UnsupportedOperationException();
+        // Customer customer = customerService.getOwnerByPet(petId);
+        return null;
     }
 }

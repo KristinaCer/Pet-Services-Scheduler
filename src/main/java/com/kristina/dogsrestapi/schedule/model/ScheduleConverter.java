@@ -1,10 +1,12 @@
 package com.kristina.dogsrestapi.schedule.model;
 
 public final class ScheduleConverter {
-    public static ScheduleDTO toDto(Schedule schedule) {
-        ScheduleDTO scheduleDTO = new ScheduleDTO();
-        scheduleDTO.setDate(schedule.getDate());
-        return null;
-
+    public static ScheduleResponseDTO toDTO (Schedule schedule){
+        ScheduleResponseDTO dto = new ScheduleResponseDTO();
+        dto.setDate(schedule.getDate());
+        dto.setActivity(schedule.getActivity());
+        dto.setEmployeeId(schedule.getId());
+        dto.setPetId(schedule.getId());
+        return dto;
     }
 }

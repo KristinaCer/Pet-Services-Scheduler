@@ -20,4 +20,5 @@ public class EmployeeDTO {
     private String phoneNumber;
     private Set<EmployeeSkill> skills;
     private Set<DayOfWeek> daysAvailable;
+    private Long salary;
 }
