@@ -24,7 +24,7 @@ public class Pet {
     private PetType type;
     @Nationalized
     private String name;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private Customer owner;
     private LocalDate birthDate;
     private String notes;

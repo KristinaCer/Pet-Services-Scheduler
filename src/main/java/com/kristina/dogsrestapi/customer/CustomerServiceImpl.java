@@ -1,6 +1,7 @@
 package com.kristina.dogsrestapi.customer;
 
 import com.kristina.dogsrestapi.customer.model.Customer;
+import com.kristina.dogsrestapi.exception.UserNotFoundException;
 import com.kristina.dogsrestapi.pet.PetService;
 import com.kristina.dogsrestapi.pet.model.Pet;
 import org.springframework.stereotype.Service;
@@ -35,5 +36,10 @@ public class CustomerServiceImpl implements CustomerService {
     public Customer getOwnerByPet(long petId) {
 //        Pet pet = petService.findPet(petId);
         return null;
+    }
+
+    @Override
+    public Customer getCustomer(Long id) {
+        return customerRepository.findById(id).orElseThrow(()-> new UserNotFoundException("Customer was not found."));
     }
 }

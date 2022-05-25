@@ -1,6 +1,10 @@
 package com.kristina.dogsrestapi.pet;
 
+import com.kristina.dogsrestapi.customer.CustomerService;
+import com.kristina.dogsrestapi.customer.model.Customer;
 import com.kristina.dogsrestapi.pet.model.Pet;
+import com.kristina.dogsrestapi.pet.model.PetConverter;
+import com.kristina.dogsrestapi.pet.model.PetDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,9 +20,11 @@ import java.util.Set;
 public class PetController {
 
     private final PetService petService;
+    private final CustomerService customerService;
 
-    public PetController(PetService petService) {
+    public PetController(PetService petService, CustomerService customerService) {
         this.petService = petService;
+        this.customerService = customerService;
     }
 
     @GetMapping("/{id}")
@@ -28,10 +34,10 @@ public class PetController {
     }
 
     @PostMapping
-    public ResponseEntity<Pet> savePet(@Valid @RequestBody Pet body) {
-        //Converteri issitraukti Customer is db ir pasetinti.
-        // Pet pet = petService.save(pet);
-        return new ResponseEntity<>(body, HttpStatus.OK);
+    public ResponseEntity<PetDTO> savePet(@Valid @RequestBody PetDTO body) {
+        Customer customer = customerService.getCustomer(body.getOwnerId());
+        Pet pet = petService.save(PetConverter.toEntity(body, customer));
+        return new ResponseEntity<>(PetConverter.toDTO(pet), HttpStatus.OK);
     }
 
     @GetMapping("/owner/{id}")

@@ -28,10 +28,17 @@ public class CustomerController {
     }
 
     @GetMapping
-    public List<CustomerDTO> getAllCustomers() {
+    public ResponseEntity<List<CustomerDTO>> getAllCustomers() {
         List<Customer> customers = customerService.getAll();
         List<CustomerDTO> customerDTOS = customers.stream().map(customer -> CustomerConverter.convertToDTO(customer)).collect(Collectors.toList());
-        return customerDTOS;
+        return new ResponseEntity<>(customerDTOS, HttpStatus.OK);
+
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<CustomerDTO> getCustomer(@PathVariable Long id) {
+        Customer customer = customerService.getCustomer(id);
+        return new ResponseEntity<>(CustomerConverter.convertToDTO(customer), HttpStatus.OK);
     }
 
     @GetMapping("/pet/{petId}")

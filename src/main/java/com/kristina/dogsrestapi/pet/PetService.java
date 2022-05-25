@@ -5,7 +5,7 @@ import com.kristina.dogsrestapi.pet.model.Pet;
 import java.util.Set;
 
 public interface PetService {
-    Pet save(Pet convertToEntity);
+    Pet save(Pet pet);
 
     Set<Pet> getAllByOwnerId(Long id);
 
